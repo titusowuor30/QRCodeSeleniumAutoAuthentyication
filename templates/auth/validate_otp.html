@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+{% block content%}
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <div class="row">
+            <div class="col-md-2">
+
+
+            </div>
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        {% include 'partials/_flash_messages.html'%}
+                        <form action="{%url 'valid_otp'%}" method="POST">
+                            {% csrf_token%}
+                            <div class="form-group">
+                                <h5 class="card-title text-muted">QRCODE AUTHENTICATION SYSTEM <br> Validate Login with
+                                    OTP</h5>
+                                <div class="form-group box" style="text-align:center;">
+                                    <figure>
+                                        <img src="{% static 'qrcodeimages/'|add:request.user.username|add:'.jpg' %}" width="300" height="300" alt="qrcode"  style="text-align:center;">
+                                    </figure>
+                                </div>
+
+                                <div class="form-group">
+                                    {{form.otp}}
+                                </div>
+                                <input type="submit" class="btn btn-sm btn-block btn-primary" value="Validate">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<div class="col-md-3"></div>
+</div>
+
+
+{% endblock %}
